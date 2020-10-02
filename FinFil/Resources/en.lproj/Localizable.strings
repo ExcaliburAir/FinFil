@@ -1,0 +1,40 @@
+/* 
+  Localizable.strings
+  FinFil
+
+  Created by 张桀硕 on 2020/9/30.
+  Copyright © 2020年 jieshuo.zhang. All rights reserved.
+*/
+
+// Network
+Network_success = "success";
+Network_fails = "Network Fales";
+Network_timeout = "Timeout, Please Try Again";
+Network_noResult_tryAgain = "No Result, Please Try Again";
+Network_fails_tryAgain = "Network fales, please check your network and try again";
+Network_noResult_tryOther = "No Result You Wanted, Please Try Other";
+Network_networkStatu = "Network Statu";
+Network_networkType_WIFI = "Wi-Fi has been used for connecting.";
+Network_networkType_4G = "4G has been used for connecting.";
+Network_networkType_Error = "Connect error.";
+Network_error = "Network Error";
+
+// Menue
+Menu_Title = "FinFil:";
+Menu_SubTitle = "created by jieshuo.zhang";
+Menu_Setting = "Settings";
+Menu_Search = "Search Movies";
+Menu_Liked = "My Favorite";
+
+// Views
+Search_Movies = "Search movies, then click \"Search\" in the keyboard";
+Try_Again = "please try again.";
+Favorated = "You Had Favorated It!";
+Review_inLiked = "You can review it in \"My Favorite\"";
+Seach_Before_Favorite = "seach filme before favorite it";
+Unfavorite = "Click To Unfavorite";
+Favorite = "Click To Favorite";
+Network_Listening = "Network Listening";
+Network_Listening_Description = "If you set the switch \"on\", the app will listening the status of network. \nThere are four status: connect, unconnect, 4G, Wi-Fi";
+Read_Overview = "Read Overview";
+Read_Overview_Description = "The App will read a movie's overview, if you set the switch \"on\". And it should be red when you favorite a filme.";

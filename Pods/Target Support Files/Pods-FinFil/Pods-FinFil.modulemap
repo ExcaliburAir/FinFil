@@ -1,0 +1,6 @@
+framework module Pods_FinFil {
+  umbrella header "Pods-FinFil-umbrella.h"
+
+  export *
+  module * { export * }
+}
