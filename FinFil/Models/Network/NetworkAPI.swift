@@ -23,19 +23,32 @@ class NetworkAPI: NSObject {
     let detailUrl2 =
         "?api_key=" + NetworkAPI.api_key
     
-    // delete space in string.
-    // todo:
-    func clearSpace(string: String) -> String {
-        var tmpString = string
-        for i in 0...10 {
-            var obString = ""
-            for _ in 0...i {
-                obString = obString + " "
+    // make space char to "+"
+    func transformString(_ string: String) -> String {
+        var transStr = ""
+        var spaceFlag = false
+        
+        for char in string {
+            if char == " " {
+                if !spaceFlag {
+                    transStr.append("+")
+                }
+                spaceFlag = true
             }
-            tmpString = tmpString.replacingOccurrences(of: obString, with: "+")
+            else {
+                transStr.append(char)
+                spaceFlag = false
+            }
         }
         
-        return tmpString
+        if transStr.first == "+" {
+            transStr = Utils().cutStringStart(transStr)
+        }
+        if transStr.last == "+" {
+            transStr = Utils().cutStringEnd(transStr)
+        }
+        
+        return transStr
     }
     
     // use path to get image from web
@@ -77,7 +90,7 @@ extension NetworkAPI {
         Utils().startActivityIndicator()
         
         // request of URL
-        let query = clearSpace(string: queryString)
+        let query = transformString(queryString)
         let urlString: String = searchUrl + query
         
         // setup request

@@ -95,7 +95,7 @@ class Utils: NSObject {
     }
     
     func ifOnlyWordAndNumber(_ string: String) -> Bool {
-        let labStr = "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm1234567890 "
+        let labStr = "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm1234567890 ."
         for char in string {
             if !labStr.contains(char) {
                 return false
@@ -208,5 +208,35 @@ class Utils: NSObject {
                 subview.removeFromSuperview()
             }
         }
+    }
+    
+    // cut last n char of string. default n == 1.
+    func cutStringEnd(_ string: String, lenth: Int = 1) -> String {
+        if string.count < lenth {
+            return string
+        }
+        if string.count == lenth {
+            return ""
+        }
+        
+        let endIndex =  string.index(string.endIndex, offsetBy: -lenth)
+        let newStr = String(string[string.startIndex..<endIndex])
+        
+        return newStr
+    }
+    
+    // cut start n char of string. default n == 1.
+    func cutStringStart(_ string: String, lenth: Int = 1) -> String {
+        if string.count < lenth {
+            return string
+        }
+        if string.count == lenth {
+            return ""
+        }
+        
+        let startIndex = string.index(string.startIndex, offsetBy: lenth)
+        let newStr = String(string[startIndex..<string.endIndex])
+        
+        return newStr
     }
 }
