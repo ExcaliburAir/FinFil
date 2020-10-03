@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rfn-xg-BpN">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -10,21 +10,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
-            <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="FinFil" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1129" y="-6386"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="4eb-EX-8nP">
             <objects>
@@ -61,11 +46,26 @@
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rPx-p7-Il6">
                                 <rect key="frame" x="60" y="209" width="255" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="search" enablesReturnKeyAutomatically="YES"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="alphabet" returnKeyType="search" enablesReturnKeyAutomatically="YES"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dA1-b7-0o2">
+                                <rect key="frame" x="137.5" y="254" width="100" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="Qck-Wf-UzZ"/>
+                                    <constraint firstAttribute="height" constant="30" id="vmW-6N-cvJ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="serch"/>
+                                <connections>
+                                    <action selector="tapSearchButton:" destination="JIp-8e-pab" eventType="touchUpInside" id="y2t-q7-1Uv"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="dA1-b7-0o2" firstAttribute="centerX" secondItem="rPx-p7-Il6" secondAttribute="centerX" id="22N-w6-uJT"/>
+                            <constraint firstItem="dA1-b7-0o2" firstAttribute="top" secondItem="rPx-p7-Il6" secondAttribute="bottom" constant="15" id="7ce-QO-l6e"/>
                             <constraint firstItem="rPx-p7-Il6" firstAttribute="top" secondItem="cSI-kN-9t7" secondAttribute="bottom" constant="15" id="BAl-We-Ugp"/>
                             <constraint firstItem="rPx-p7-Il6" firstAttribute="height" secondItem="cSI-kN-9t7" secondAttribute="height" id="Haj-2y-YUM"/>
                             <constraint firstItem="cSI-kN-9t7" firstAttribute="leading" secondItem="61h-9M-Rwq" secondAttribute="leading" constant="60" id="JgO-9q-5p3"/>
@@ -88,6 +88,7 @@
                     <connections>
                         <outlet property="infoLabel" destination="cSI-kN-9t7" id="x3A-Ow-yTj"/>
                         <outlet property="menuButton" destination="QZp-2e-D7w" id="zK4-n6-C06"/>
+                        <outlet property="searchButton" destination="dA1-b7-0o2" id="Vxp-P9-aYG"/>
                         <outlet property="textField" destination="rPx-p7-Il6" id="Yxb-04-h0k"/>
                         <segue destination="PaO-Ns-akI" kind="push" identifier="SearchToList" id="3UD-x1-GFi"/>
                     </connections>

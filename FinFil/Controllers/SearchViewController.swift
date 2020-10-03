@@ -14,6 +14,7 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var menuButton: UIBarButtonItem!
     @IBOutlet weak var infoLabel: UILabel!
     @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var searchButton: UIButton!
     
     
     // MARK:-
@@ -64,7 +65,17 @@ extension SearchViewController {
     func setupViews() {
         textField.delegate = self
         
-        // back ground color set
+        // setup search button
+        searchButton.layer.borderColor = UIColor.white.cgColor
+        searchButton.layer.borderWidth = 1
+        searchButton.layer.masksToBounds = true
+        searchButton.titleLabel?.textAlignment = NSTextAlignment.center
+        searchButton.layer.cornerRadius = 5
+        searchButton.backgroundColor = .clear
+        searchButton.setTitle(NSLocalizedString("Search", comment: ""), for: .normal)
+        searchButton.setTitleColor(.white, for: .normal)
+        
+        // set up back ground color
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = self.view.bounds
         self.view.layer.addSublayer(gradientLayer)
@@ -77,9 +88,10 @@ extension SearchViewController {
         gradientLayer.locations = gradientLocations
         gradientLayer.startPoint = CGPoint.init(x: 0.4, y: 0)
         gradientLayer.endPoint = CGPoint.init(x: 0.6, y: 1)
-        
+        //
         self.view.addSubview(infoLabel)
         self.view.addSubview(textField)
+        self.view.addSubview(searchButton)
     }
     
     func refreshViews() {
@@ -90,6 +102,13 @@ extension SearchViewController {
     @IBAction func tapSideMenuButton(_ sender: UIBarButtonItem) {
         // show sidemenu
         sideMenuController?.revealMenu()
+    }
+    
+    @IBAction func tapSearchButton(_ sender: UIButton) {
+        textField.resignFirstResponder()
+        if ifInputRight() {
+            sendSearchRequest()
+        }
     }
     
     // add tap gesure
@@ -103,6 +122,52 @@ extension SearchViewController {
     
     @objc func tapGestureAction(sender: UITapGestureRecognizer) {
         textField.resignFirstResponder()
+    }
+    
+    private func sendSearchRequest() {
+        NetworkAPI().get_search_request(
+            controller: self,
+            queryString: textField.text!,
+            block: { movies in
+                print(movies)
+                if movies.count >= 1 {
+                    self.performSegue(withIdentifier: "SearchToList", sender: movies)
+                }
+                else {
+                    Utils().okButtonAlertView(
+                        title: NSLocalizedString("Network_noResult_tryOther", comment: ""),
+                        controller: self,
+                        block: nil)
+                }
+        })
+    }
+    
+    private func ifInputRight() -> Bool {
+        if textField.text!.isEmpty {
+            Utils().okButtonAlertView(
+                title: NSLocalizedString("Input_Cant_Nil", comment: ""),
+                controller: self,
+                block: nil)
+            return false
+        }
+        
+        if !Utils().ifOnlyEnglish(textField.text!) {
+            Utils().okButtonAlertView(
+                title: NSLocalizedString("Only_English_Allowed", comment: ""),
+                controller: self,
+                block: nil)
+            return false
+        }
+        
+        if !Utils().ifOnlyWordAndNumber(textField.text!) {
+            Utils().okButtonAlertView(
+                title: NSLocalizedString("Wrrong_Char_Used", comment: ""),
+                controller: self,
+                block: nil)
+            return false
+        }
+        
+        return true
     }
 }
 
@@ -129,24 +194,13 @@ extension SearchViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         
-        // use search request
-        NetworkAPI().get_search_request(
-            controller: self,
-            queryString: textField.text!,
-            block: { movies in
-                print(movies)
-                if movies.count >= 1 {
-                    self.performSegue(withIdentifier: "SearchToList", sender: movies)
-                }
-                else {
-                    Utils().okButtonAlertView(
-                        title: NSLocalizedString("Network_noResult_tryOther", comment: ""),
-                        controller: self,
-                        block: nil)
-                }
-        })
-        
-        return true
+        if ifInputRight() {
+            sendSearchRequest()
+            return true
+        }
+        else {
+            return false
+        }
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

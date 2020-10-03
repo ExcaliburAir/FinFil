@@ -17,6 +17,8 @@ Network_networkType_WIFI = "Wi-Fi が使用しています";
 Network_networkType_4G = "4G が使用しています";
 Network_networkType_Error = "ネットワーク失敗";
 Network_error = "ネットワークエラー";
+Network_Listening = "常にネットワークの状態を見る";
+Network_Listening_Description = "\"on\"の状態になったら、常にネットワークの状態を見る。\nネットワークは四つの状態がある； connect, unconnect, 4G, Wi-Fi";
 
 // Menue
 Menu_Title = "FinFil:";
@@ -33,7 +35,9 @@ Review_inLiked = "\"気になる映画\"で確認できます";
 Seach_Before_Favorite = "映画を気になる前に、好きな映画を検索しましょう";
 Unfavorite = "気になるになる";
 Favorite = "気になるを外す";
-Network_Listening = "常にネットワークの状態を見る";
-Network_Listening_Description = "\"on\"の状態になったら、常にネットワークの状態を見る。\nネットワークは四つの状態がある； connect, unconnect, 4G, Wi-Fi";
 Read_Overview = "映画の紹介を読む";
 Read_Overview_Description = "\"on\"の状態になったら、\"気になるになる\"ボタンを押すと、Appが映画の紹介を読みます。";
+Search = "検索する";
+Input_Cant_Nil = "内容を入れてください";
+Only_English_Allowed = "英語を使ってください";
+Wrrong_Char_Used = "使えない文字が入っています";

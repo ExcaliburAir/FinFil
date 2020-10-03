@@ -18,6 +18,8 @@ Network_networkType_WIFI = "Wi-Fi has been used for connecting.";
 Network_networkType_4G = "4G has been used for connecting.";
 Network_networkType_Error = "Connect error.";
 Network_error = "Network Error";
+Network_Listening = "Network Listening";
+Network_Listening_Description = "If you set the switch \"on\", the app will listening the status of network. \nThere are four status: connect, unconnect, 4G, Wi-Fi";
 
 // Menue
 Menu_Title = "FinFil:";
@@ -34,7 +36,9 @@ Review_inLiked = "You can review it in \"My Favorite\"";
 Seach_Before_Favorite = "seach filme before favorite it";
 Unfavorite = "Click To Unfavorite";
 Favorite = "Click To Favorite";
-Network_Listening = "Network Listening";
-Network_Listening_Description = "If you set the switch \"on\", the app will listening the status of network. \nThere are four status: connect, unconnect, 4G, Wi-Fi";
 Read_Overview = "Read Overview";
 Read_Overview_Description = "The App will read a movie's overview, if you set the switch \"on\". And it should be red when you favorite a filme.";
+Search = "search";
+Input_Cant_Nil = "You cant search by nothing";
+Only_English_Allowed = "Please use english only";
+Wrrong_Char_Used = "Unallowed char is used";

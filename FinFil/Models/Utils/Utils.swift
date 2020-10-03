@@ -84,6 +84,27 @@ class Utils: NSObject {
         return type
     }
     
+    func ifOnlyEnglish(_ string: String) -> Bool {
+        for (_, value) in string.enumerated() {
+            if (value >= "\u{4E00}") {
+                return false
+            }
+        }
+        
+        return true
+    }
+    
+    func ifOnlyWordAndNumber(_ string: String) -> Bool {
+        let labStr = "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm1234567890 "
+        for char in string {
+            if !labStr.contains(char) {
+                return false
+            }
+        }
+        
+        return true
+    }
+    
     // get alertview only have OK button
     func okButtonAlertView(title: String, controller: UIViewController, block: (() -> Void)?) {
         let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
