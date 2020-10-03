@@ -199,8 +199,8 @@
 		8A83CAEC25263C3400F8C4E2 /* DateBase */ = {
 			isa = PBXGroup;
 			children = (
-				E2E22E412526D7ED00EEACD2 /* DatabaseModel.swift */,
 				E2E22E432526DB4900EEACD2 /* DatabaseAPI.swift */,
+				E2E22E412526D7ED00EEACD2 /* DatabaseModel.swift */,
 				8A3258FA252793C600D33AB0 /* UserDefaultBase.swift */,
 			);
 			path = DateBase;
