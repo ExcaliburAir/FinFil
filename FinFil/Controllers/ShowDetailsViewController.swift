@@ -67,7 +67,7 @@ class ShowDetailsViewController: UIViewController {
 extension ShowDetailsViewController {
     
     func prepareData() {
-        Network().getImageFromWeb(movieDetail!.posterPath) { (image) in
+        NetworkAPI().getImageFromWeb(movieDetail!.posterPath) { (image) in
             self.posterImage.image = image
         }
         titelLabel.text = movieDetail!.originalTitle

@@ -101,7 +101,7 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
 
         tableView.deselectRow(at: indexPath, animated: true)
         
-        Network().get_details_request(
+        NetworkAPI().get_details_request(
             controller: self,
             movieID: movieID,
             block: { movie in

@@ -67,7 +67,7 @@ extension AppDelegate {
 
     private func setupApp() {
         // start to listening the network status
-        Network.startListenNetwork()
+        NetworkAPI.startListenNetwork()
         
         // if app read the movie's overview or not. default is yes
         let soundType = UserDefaultBase().getSoundType()

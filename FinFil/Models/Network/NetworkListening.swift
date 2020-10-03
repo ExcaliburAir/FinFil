@@ -31,7 +31,7 @@ enum NetworkingStatus {
 
 
 // network listening method
-extension Network {
+extension NetworkAPI {
     
     static var showTips = false
     static var oldStatus: NetworkingStatus = .none
@@ -59,11 +59,11 @@ extension Network {
             if showTips {
                 // send notice
                 if self.status == .none {
-                    Network.postAPNsMessage(title: NSLocalizedString("Network_error", comment: ""),
+                    NetworkAPI.postAPNsMessage(title: NSLocalizedString("Network_error", comment: ""),
                                             body: self.status.description)
                 }
                 else {
-                    Network.postAPNsMessage(title: NSLocalizedString("Network_networkStatu", comment: ""),
+                    NetworkAPI.postAPNsMessage(title: NSLocalizedString("Network_networkStatu", comment: ""),
                                             body: self.status.description)
                 }
             }
@@ -79,7 +79,7 @@ extension Network {
                 showTips = true
                 
                 // send notice
-                Network.postAPNsMessage(title: NSLocalizedString("Network_error", comment: ""),
+                NetworkAPI.postAPNsMessage(title: NSLocalizedString("Network_error", comment: ""),
                                         body: self.status.description)
             }
         })

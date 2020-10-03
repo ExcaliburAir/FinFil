@@ -23,10 +23,10 @@
 		8A83CAD12524A93000F8C4E2 /* AppFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A83CAD02524A93000F8C4E2 /* AppFlags.swift */; };
 		8A83CADB2524AD9400F8C4E2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8A83CADD2524AD9400F8C4E2 /* Localizable.strings */; };
 		8A83CAE02524B33C00F8C4E2 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A83CADF2524B33B00F8C4E2 /* Extensions.swift */; };
-		8A83CAE32525696100F8C4E2 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A83CAE22525696100F8C4E2 /* Network.swift */; };
+		8A83CAE32525696100F8C4E2 /* NetworkAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A83CAE22525696100F8C4E2 /* NetworkAPI.swift */; };
 		8A83CAE52525CD5200F8C4E2 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A83CAE42525CD5200F8C4E2 /* ListViewController.swift */; };
 		8A83CAE72525CD7500F8C4E2 /* ShowDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A83CAE62525CD7500F8C4E2 /* ShowDetailsViewController.swift */; };
-		8A83CAE92525EC6D00F8C4E2 /* NetworkData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A83CAE82525EC6D00F8C4E2 /* NetworkData.swift */; };
+		8A83CAE92525EC6D00F8C4E2 /* NetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A83CAE82525EC6D00F8C4E2 /* NetworkModel.swift */; };
 		E2E22E422526D7ED00EEACD2 /* DatabaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E22E412526D7ED00EEACD2 /* DatabaseModel.swift */; };
 		E2E22E442526DB4900EEACD2 /* DatabaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E22E432526DB4900EEACD2 /* DatabaseAPI.swift */; };
 		E2E22E6A2527024500EEACD2 /* UIViewController+SideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E22E5F2527024500EEACD2 /* UIViewController+SideMenu.swift */; };
@@ -64,10 +64,10 @@
 		8A83CADC2524AD9400F8C4E2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8A83CADE2524ADA100F8C4E2 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8A83CADF2524B33B00F8C4E2 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		8A83CAE22525696100F8C4E2 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		8A83CAE22525696100F8C4E2 /* NetworkAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAPI.swift; sourceTree = "<group>"; };
 		8A83CAE42525CD5200F8C4E2 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		8A83CAE62525CD7500F8C4E2 /* ShowDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDetailsViewController.swift; sourceTree = "<group>"; };
-		8A83CAE82525EC6D00F8C4E2 /* NetworkData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkData.swift; sourceTree = "<group>"; };
+		8A83CAE82525EC6D00F8C4E2 /* NetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkModel.swift; sourceTree = "<group>"; };
 		B48975D73C324A413A82575B /* Pods-FinFil.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinFil.release.xcconfig"; path = "Target Support Files/Pods-FinFil/Pods-FinFil.release.xcconfig"; sourceTree = "<group>"; };
 		E2E22E412526D7ED00EEACD2 /* DatabaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseModel.swift; sourceTree = "<group>"; };
 		E2E22E432526DB4900EEACD2 /* DatabaseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseAPI.swift; sourceTree = "<group>"; };
@@ -192,8 +192,8 @@
 		8A83CAE12525692600F8C4E2 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				8A83CAE22525696100F8C4E2 /* Network.swift */,
-				8A83CAE82525EC6D00F8C4E2 /* NetworkData.swift */,
+				8A83CAE22525696100F8C4E2 /* NetworkAPI.swift */,
+				8A83CAE82525EC6D00F8C4E2 /* NetworkModel.swift */,
 				8A3258F82527905B00D33AB0 /* NetworkListening.swift */,
 			);
 			path = Network;
@@ -369,9 +369,9 @@
 				8A83CA9C2524975D00F8C4E2 /* ViewController.swift in Sources */,
 				E2E22E6D2527024500EEACD2 /* Delegate.swift in Sources */,
 				8A3258FB252793C600D33AB0 /* UserDefaultBase.swift in Sources */,
-				8A83CAE32525696100F8C4E2 /* Network.swift in Sources */,
+				8A83CAE32525696100F8C4E2 /* NetworkAPI.swift in Sources */,
 				E2E22E422526D7ED00EEACD2 /* DatabaseModel.swift in Sources */,
-				8A83CAE92525EC6D00F8C4E2 /* NetworkData.swift in Sources */,
+				8A83CAE92525EC6D00F8C4E2 /* NetworkModel.swift in Sources */,
 				E2E22E6E2527024500EEACD2 /* TransitionContext.swift in Sources */,
 				8A83CACF2524A7A500F8C4E2 /* Utils.swift in Sources */,
 				E2E22E6F2527024500EEACD2 /* UIViewController+Container.swift in Sources */,

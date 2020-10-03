@@ -130,7 +130,7 @@ extension SearchViewController: UITextFieldDelegate {
         textField.resignFirstResponder()
         
         // use search request
-        Network().get_search_request(
+        NetworkAPI().get_search_request(
             controller: self,
             queryString: textField.text!,
             block: { movies in
