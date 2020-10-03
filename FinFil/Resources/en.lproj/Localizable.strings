@@ -41,4 +41,4 @@ Read_Overview_Description = "The App will read a movie's overview, if you set th
 Search = "search";
 Input_Cant_Nil = "You cant search by nothing";
 Only_English_Allowed = "Please use english only";
-Wrrong_Char_Used = "Unallowed char is used";
+Wrrong_Char_Used = "You can only use alphabet, number, space and dot.";
