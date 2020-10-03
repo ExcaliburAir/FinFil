@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		3DA3F0A23766F6BC49C1BAED /* Pods_FinFil.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61C3216A656B85DA713D8ABE /* Pods_FinFil.framework */; };
 		8A3258F92527905B00D33AB0 /* NetworkListening.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3258F82527905B00D33AB0 /* NetworkListening.swift */; };
-		8A3258FB252793C600D33AB0 /* DefaultBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3258FA252793C600D33AB0 /* DefaultBase.swift */; };
+		8A3258FB252793C600D33AB0 /* UserDefaultBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3258FA252793C600D33AB0 /* UserDefaultBase.swift */; };
 		8A83CA9A2524975D00F8C4E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A83CA992524975D00F8C4E2 /* AppDelegate.swift */; };
 		8A83CA9C2524975D00F8C4E2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A83CA9B2524975D00F8C4E2 /* ViewController.swift */; };
 		8A83CA9F2524975D00F8C4E2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A83CA9D2524975D00F8C4E2 /* Main.storyboard */; };
@@ -45,7 +45,7 @@
 		61C3216A656B85DA713D8ABE /* Pods_FinFil.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FinFil.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EFF8EF2209DC4D0BA742B80 /* Pods-FinFil.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinFil.debug.xcconfig"; path = "Target Support Files/Pods-FinFil/Pods-FinFil.debug.xcconfig"; sourceTree = "<group>"; };
 		8A3258F82527905B00D33AB0 /* NetworkListening.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkListening.swift; sourceTree = "<group>"; };
-		8A3258FA252793C600D33AB0 /* DefaultBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultBase.swift; sourceTree = "<group>"; };
+		8A3258FA252793C600D33AB0 /* UserDefaultBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultBase.swift; sourceTree = "<group>"; };
 		8A83CA962524975D00F8C4E2 /* FinFil.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FinFil.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A83CA992524975D00F8C4E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8A83CA9B2524975D00F8C4E2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -204,7 +204,7 @@
 			children = (
 				E2E22E412526D7ED00EEACD2 /* DatabaseModel.swift */,
 				E2E22E432526DB4900EEACD2 /* DatabaseAPI.swift */,
-				8A3258FA252793C600D33AB0 /* DefaultBase.swift */,
+				8A3258FA252793C600D33AB0 /* UserDefaultBase.swift */,
 			);
 			path = DateBase;
 			sourceTree = "<group>";
@@ -368,7 +368,7 @@
 				E2E22E6C2527024500EEACD2 /* Preferences.swift in Sources */,
 				8A83CA9C2524975D00F8C4E2 /* ViewController.swift in Sources */,
 				E2E22E6D2527024500EEACD2 /* Delegate.swift in Sources */,
-				8A3258FB252793C600D33AB0 /* DefaultBase.swift in Sources */,
+				8A3258FB252793C600D33AB0 /* UserDefaultBase.swift in Sources */,
 				8A83CAE32525696100F8C4E2 /* Network.swift in Sources */,
 				E2E22E422526D7ED00EEACD2 /* DatabaseModel.swift in Sources */,
 				8A83CAE92525EC6D00F8C4E2 /* NetworkData.swift in Sources */,

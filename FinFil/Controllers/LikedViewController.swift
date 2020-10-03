@@ -82,9 +82,7 @@ extension LikedViewController {
         }
     }
     
-    // Menu按键
     @IBAction func tapSideMenuButton(_ sender: UIBarButtonItem) {
-        // 调用侧边栏
         sideMenuController?.revealMenu()
     }
 }
@@ -116,7 +114,6 @@ extension LikedViewController: UITableViewDelegate, UITableViewDataSource {
         let row = indexPath.row
         let movieID = String(likedMovieInfos[row].movieIdInt)
         
-        // 取消选中状态
         tableView.deselectRow(at: indexPath, animated: true)
         
         Network().get_details_request(

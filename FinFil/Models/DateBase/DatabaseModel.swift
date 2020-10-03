@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import RealmSwift
 
+// instance in DB
 class LikedMovieInfo: Object {
     @objc dynamic var movieIdInt: Int = 0
     @objc dynamic var originalTitle: String = ""

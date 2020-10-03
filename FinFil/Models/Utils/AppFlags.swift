@@ -9,25 +9,25 @@
 import Foundation
 import UIKit
 
-// 侧边栏用：必须和侧边栏数字顺位相同
+// side menu flags
 class SelectedSideMenu: NSObject {
     static let search =         0
     static let liked =          1
     static let setting =        2
 }
 
-// 整体的值标准
+// use in app
 class Standard: NSObject {
-    static let radius: CGFloat = 5 // View圆角
+    static let radius: CGFloat = 5 // View radius
 }
 
-// 自定义通知name
+// notification type
 class NotificationName: NSObject {
-    static let hideKeyboard = "hideKeyboard" // 让键盘隐藏
+    static let hideKeyboard = "hideKeyboard" // hide keyboard
 }
 
-// view用：统一管理ViewTag号
+// view tag
 class ViewTag: NSObject {
-    // 图像增减，单用
+    // use by indicator
     static let Utils_BackView_Tag: Int = 11000001
 }

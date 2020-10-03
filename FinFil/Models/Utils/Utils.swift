@@ -13,7 +13,7 @@ import AVFoundation
 
 class Utils: NSObject {
     
-    // 获得本App的版本号
+    // get app viersion number
     static func getAppVersion() -> String {
         let infoDictionary = Bundle.main.infoDictionary!
         let version = infoDictionary["CFBundleShortVersionString"]
@@ -22,62 +22,60 @@ class Utils: NSObject {
         return "Version " + versionStr
     }
     
-    // 获得操作系统版本
+    // get iOS version
     static func getIosVersion() -> String {
         return UIDevice.current.systemVersion
     }
     
-    // 拿到硬件类型
+    // get device type
     static func getDevice() -> String {
         return UIDevice.deviceType
     }
     
-    // 得到appDelegate的单例对象
+    // get appDelegate instance
     func getAppDelegate() -> AppDelegate {
-        // 获取Appdelegate
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        
         return appDelegate
     }
     
-    // 得到侧边栏菜单的数字flag
+    // get side menu flag
     func getMenuInt() -> Int {
         return getAppDelegate().sideMenuInt
     }
     
-    // 设置侧边栏菜单的数字flag
+    // set side menu flag
     func setMenuInt(int: Int) {
         getAppDelegate().sideMenuInt = int
     }
     
-    // 返回语言类型String
+    // get language type : english, japanese, chinese.
     func getLanguageType(_ string: String) -> String {
-        // 优先级别：日语>汉语>英语，默认日语
-        // 中国：zh-CN，日本：ja-JP，美国：en-US
+        // japanese > chinese > english ,defult is japanese
+        // chinese：zh-CN，japanese：ja-JP，english：en-US
         var type: String = "ja-JP"
         
-        // 先看英语
+        // english
         for (_, value) in string.enumerated() {
             if (value < "\u{4E00}") {
                 type = "en-US"
             }
         }
         
-        // 再看汉语
+        // chinese
         for (_, value) in string.enumerated() {
             if ("\u{4E00}" <= value  && value <= "\u{9FAf}") {
                 type = "zh-CN"
             }
         }
         
-        // 最后日语
+        // japnese
         for (_, value) in string.enumerated() {
-            // 有平假名
+            // hiragana
             if ("\u{3040}" <= value  && value <= "\u{309f}") {
                 type = "ja-JP"
             }
             
-            // 有片假名
+            // katagana
             if ("\u{30a0}" <= value  && value <= "\u{30ff}") {
                 type = "ja-JP"
             }
@@ -86,7 +84,7 @@ class Utils: NSObject {
         return type
     }
     
-    // 只有OK键的提示
+    // get alertview only have OK button
     func okButtonAlertView(title: String, controller: UIViewController, block: (() -> Void)?) {
         let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) in
@@ -98,7 +96,7 @@ class Utils: NSObject {
         controller.present(alert, animated: true, completion: nil)
     }
     
-    // 只有OK键，有题头和细节的提示
+    // get alertview only have OK button, title and message
     func okButtonAlertView(title: String, message: String,
                            controller: UIViewController, block: (() -> Void)?) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -111,7 +109,7 @@ class Utils: NSObject {
         controller.present(alert, animated: true, completion: nil)
     }
     
-    // 有OK和Cancel的提示
+    // get alertview with OK and Cancel button
     func okCancelAlertView(title: String, controller: UIViewController, okBlock: (() -> Void)?, cancelBlock: (() -> Void)?) {
         let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
         
@@ -132,13 +130,13 @@ class Utils: NSObject {
         controller.present(alert, animated: true, completion: nil)
     }
     
-    // 开始等待
+    // start activity indicator
     func startActivityIndicator() {
-        // 获得窗口
+        // cover to window
         let root = UIApplication.shared.delegate as! AppDelegate
         let backFrame = (root.window?.frame)!
         
-        // 覆盖整个背景
+        // window size
         let backView = UIView(frame: backFrame)
         backView.backgroundColor = UIColor(red: 0 / 255.0,
                                            green: 0 / 255.0,
@@ -147,7 +145,7 @@ class Utils: NSObject {
         backView.isUserInteractionEnabled = true
         backView.tag = ViewTag.Utils_BackView_Tag
         
-        // 中间的小区
+        // background view
         let showWidth: CGFloat = 120
         let showHeight = showWidth
         let showX = (backView.frame.width - showWidth) / 2
@@ -156,13 +154,13 @@ class Utils: NSObject {
         let showView = UIView(frame: CGRect(x: showX, y: showY,
                                             width: showWidth,
                                             height: showHeight))
-        showView.backgroundColor = UIColor.clear // 可显示
+        showView.backgroundColor = UIColor.clear
         showView.layer.cornerRadius = 10
         showView.layer.masksToBounds = true
         backView.addSubview(showView)
         
-        // 旋转方案一
-        let indiWidth: CGFloat = 100 // 大小要统一
+        // indicator
+        let indiWidth: CGFloat = 100
         let indiHeight: CGFloat = indiWidth
         let indiX: CGFloat = (showWidth - indiWidth) / 2
         let indiY: CGFloat = (showHeight - indiHeight) / 2
@@ -181,7 +179,7 @@ class Utils: NSObject {
         root.window?.addSubview(backView)
     }
     
-    // 结束等待
+    // stop activity indicator
     func stopActivityIndicator() {
         let root = UIApplication.shared.delegate as! AppDelegate
         for subview in (root.window?.subviews)! {

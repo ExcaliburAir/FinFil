@@ -10,12 +10,7 @@ import Foundation
 import UIKit
 import Alamofire
 
-//    static let api_key = "2965254ed733f5f5756eab2a53a32a18" // zhangjieshuo003
-//    static let api_key = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1NjhmODgwYWFjZWE2OGYwMjdhYzUxOWFjMThkNTIxZSIsInN1YiI6IjVmNzU0YzhmMTk2NzU3MDAzOTk0NDA0NCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.IJoc_jgDqhTeqFCkFiZbXNUY7O4d0SVrhj97MySrCoQ"
-//    let BsearchUrl = "https://api.themoviedb.org/3/search/movie?api_key=568f880aacea68f027ac519ac18d521e&query=Jack+Reacher"
-//    let BdetailUrl = "https://api.themoviedb.org/3/movie/343611?api_key=568f880aacea68f027ac519ac18d521e"
-
-// 内部参数
+// network api
 class Network: NSObject {
     let timeOutInt: Int = 60
     static let api_key = "568f880aacea68f027ac519ac18d521e" // zhangjieshuo002
@@ -28,6 +23,8 @@ class Network: NSObject {
     let detailUrl2 =
         "?api_key=" + Network.api_key
     
+    // delete space in string.
+    // todo:
     func clearSpace(string: String) -> String {
         var tmpString = string
         for i in 0...10 {
@@ -41,6 +38,7 @@ class Network: NSObject {
         return tmpString
     }
     
+    // use path to get image from web
     func getImageFromWeb(_ urlString: String, closure: @escaping (UIImage?) -> ())
     {
         guard let url = URL(string: urlString) else {
@@ -68,33 +66,33 @@ class Network: NSObject {
 }
 
 extension Network {
-    
+    // search movies by keyword
     // todo: other page, not juset page 1.
     func get_search_request(
         controller: UIViewController,
         queryString: String,
         block: ((_ data: [MovieInfo]) -> Void)?)
     {
-        // 进度条开始
+        // start activity indicator
         Utils().startActivityIndicator()
         
-        // 请求地址
+        // request of URL
         let query = clearSpace(string: queryString)
         let urlString: String = searchUrl + query
         
-        // 设置请求
+        // setup request
         var request = URLRequest(url: URL(string: urlString)!)
         request.httpMethod = "GET"
         request.timeoutInterval = TimeInterval(timeOutInt)
         request.setValue("application/json; charset=utf8", forHTTPHeaderField: "Content-Type")
         
-        // 发送请求
+        // send request
         Alamofire.request(request)
             .validate()
             .responseJSON { (response: DataResponse<Any>) in
-                // 进度条结束
+                // stop activity indicator
                 Utils().stopActivityIndicator()
-                // 处理返回结果
+                // deal with result
                 switch(response.result) {
                 case .success(_):
                     if let data = response.result.value {
@@ -108,7 +106,7 @@ extension Network {
                             moviesInfo.append(MovieInfo(dic: movie))
                         }
                         
-                        // 处理返回结果
+                        // return block
                         if (block != nil) {
                             _ = block!(moviesInfo)
                         }
@@ -129,33 +127,34 @@ extension Network {
                     
                     break
                 }
-        }//
+        }
     }
     
+    // moview deatials requset
     func get_details_request(
         controller: UIViewController,
         movieID: String,
         block: ((_ data: MovieDetail) -> Void)?)
     {
-        // 进度条开始
+        // start activity indicator
         Utils().startActivityIndicator()
         
-        // 请求地址
+        // request of URL
         let urlString: String = detailUrl1 + movieID + detailUrl2
         
-        // 设置请求
+        // setup request
         var request = URLRequest(url: URL(string: urlString)!)
         request.httpMethod = "GET"
         request.timeoutInterval = TimeInterval(timeOutInt)
         request.setValue("application/json; charset=utf8", forHTTPHeaderField: "Content-Type")
         
-        // 发送请求
+        // send request
         Alamofire.request(request)
             .validate()
             .responseJSON { (response: DataResponse<Any>) in
-                // 进度条结束
+                // stop activity indicator
                 Utils().stopActivityIndicator()
-                // 处理返回结果
+                // deal with result
                 switch(response.result) {
                 case .success(_):
                     if let data = response.result.value {
@@ -182,7 +181,6 @@ extension Network {
                     
                     break
                 }
-        }//
+        }
     }
-
 }

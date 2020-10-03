@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+// result for search movies request
 class MovieInfo: NSObject {
     var movieID: String = ""
     var originalTitle: String = ""
@@ -41,6 +42,7 @@ class MovieInfo: NSObject {
     }
 }
 
+// result for deatials request
 class MovieDetail: NSObject {
     var movieID: String = ""
     var originalTitle: String = ""

@@ -15,7 +15,7 @@ class MovieInfoRealmTool: Object {
     private class func getDB() -> Realm {
         let docPath = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0] as String
         let dbPath = docPath.appending("/defaultDB.realm")
-        /// 传入路径会自动创建数据库
+        // setup DB
         let defaultRealm = try! Realm(fileURL: URL.init(string: dbPath)!)
         return defaultRealm
     }
@@ -33,7 +33,7 @@ class MovieInfoRealmTool: Object {
 
 extension MovieInfoRealmTool {
    
-    /// insert
+    // insert
     public class func insertMovieInfo(movieInfo: LikedMovieInfo) -> Void {
         let defaultRealm = self.getDB()
         try! defaultRealm.write {
@@ -42,13 +42,13 @@ extension MovieInfoRealmTool {
         print(defaultRealm.configuration.fileURL ?? "")
     }
     
-    /// read
+    // read
     public class func getMovieInfos() -> Results<LikedMovieInfo> {
         let defaultRealm = self.getDB()
         return defaultRealm.objects(LikedMovieInfo.self)
     }
     
-    /// update
+    // update
     public class func updateMovieInfo(movieInfo: LikedMovieInfo) {
         let defaultRealm = self.getDB()
         try! defaultRealm.write {
@@ -56,7 +56,7 @@ extension MovieInfoRealmTool {
         }
     }
     
-    /// delete
+    // delete
     public class func deleteMovieInfo(movieInfo: LikedMovieInfo) {
         let defaultRealm = self.getDB()
         try! defaultRealm.write {
@@ -64,6 +64,7 @@ extension MovieInfoRealmTool {
         }
     }
     
+    // if instance had saved in DB
     public class func ifInMovieInfoDB(movieIdInt: Int) -> Bool {
         var idList: [Int] = []
         let likedMovieInfos = MovieInfoRealmTool.getMovieInfos()
@@ -79,6 +80,7 @@ extension MovieInfoRealmTool {
         }
     }
     
+    // get all instance in DB
     public class func getAll() -> [LikedMovieInfo] {
         var list: [LikedMovieInfo] = []
         let likedMovieInfos = MovieInfoRealmTool.getMovieInfos()

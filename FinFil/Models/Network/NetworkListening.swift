@@ -13,7 +13,6 @@ import Alamofire
 import UserNotifications
 
 enum NetworkingStatus {
-    
     case mobile
     case wifi
     case none
@@ -31,16 +30,15 @@ enum NetworkingStatus {
 }
 
 
-// 网络状态监听
+// network listening method
 extension Network {
     
     static var showTips = false
     static var oldStatus: NetworkingStatus = .none
     static var status: NetworkingStatus = .none
     
-    // 开始监听网络状态
+    // start to listening network
     class func startListenNetwork() {
-        // 监听单例
         let manager = NetworkReachabilityManager()
         manager?.listener = { status in
             self.oldStatus = self.status
@@ -59,7 +57,7 @@ extension Network {
             }
             
             if showTips {
-                // 给提示
+                // send notice
                 if self.status == .none {
                     Network.postAPNsMessage(title: NSLocalizedString("Network_error", comment: ""),
                                             body: self.status.description)
@@ -80,34 +78,33 @@ extension Network {
             if status == .none {
                 showTips = true
                 
-                // 给提示
+                // send notice
                 Network.postAPNsMessage(title: NSLocalizedString("Network_error", comment: ""),
                                         body: self.status.description)
             }
         })
     }
     
-    // 程序内部发送提示
+    // send message in app
     class func postAPNsMessage(title: String, body: String) {
         // controlled in setting viewcontroller
-        if DefaultBase().getAppType() == DefaultBase.unLiseningNetwork {
+        if UserDefaultBase().getAppType() == UserDefaultBase.unLiseningNetwork {
             return
         }
         
-        // 设置消息
+        // setup message
         let content = UNMutableNotificationContent()
         content.title = title
         content.body = body
         content.sound = UNNotificationSound.default()
-        content.badge = 0 // icon右上角显示多少提示
+        content.badge = 0 // icon
 
-        // 指定时间发送通知
+        // setup send time
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.1, repeats: false)
-        
-        // 用trigger和content创建请求
+        // ceate request
         let request = UNNotificationRequest(identifier: "App_Network_Status", content: content, trigger: trigger)
         
-        // 把请求添加到系统队列中
+        // set request in
         UNUserNotificationCenter.current().add(request) { (error) in
             if let error = error {
                 print("Failed to add request to notification center. error:\(error)")
@@ -115,7 +112,7 @@ extension Network {
         }
     }
     
-    // 主动判断是否连接
+    // if conected
     class func ifNetConnect() -> Bool {
         if self.status == .none {
             return false

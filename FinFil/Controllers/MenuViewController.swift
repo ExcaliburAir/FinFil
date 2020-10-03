@@ -44,20 +44,17 @@ class MenuViewController: UIViewController {
     @IBOutlet weak var settingButton: UIButton!
     @IBOutlet weak var verLabel: UILabel!
     
-    // cell高度
     let cellHeight: CGFloat = 42
     
     // MARK:-
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // 侧边栏设置，优先度低于AppDelegete里的设置
         setupViews()
-        // 添加内部成分Views
         inputContentViews()
     }
 
-    // 在屏幕旋转变形调用，本项目用不到，保留以备用
+    // use when scream transition
     override func viewWillTransition(
         to size: CGSize,
         with coordinator: UIViewControllerTransitionCoordinator)
@@ -69,27 +66,22 @@ class MenuViewController: UIViewController {
         let showPlaceTableOnLeft =
             (sidemenuBasicConfiguration.position == .under) != (sidemenuBasicConfiguration.direction == .right)
         selectionMenuTrailingConstraint.constant = showPlaceTableOnLeft ? SideMenuController.preferences.basic.menuWidth - size.width : 0
-        view.layoutIfNeeded() // 重新layout
+        view.layoutIfNeeded()
     }
     
-    // 动态更新
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
 }
 
-// MARK:- 内部方法
 extension MenuViewController {
     
-    // 侧边栏设置
+    // setup sidemenu views
     func setupViews() {
-        // 指定自己实现侧边栏的代理
         sideMenuController?.delegate = self
-        
-        // 判定侧边栏的模式是否是黑暗模式，本app不采用
         isDarkModeEnabled = SideMenuController.preferences.basic.position == .under
         
-        // 暗影模式
+        // dark model
         if isDarkModeEnabled {
             themeColor = UIColor(red: 0.03, green: 0.04, blue: 0.07, alpha: 1.00)
             selectionTableViewHeader.textColor = .white
@@ -107,41 +99,41 @@ extension MenuViewController {
                 SideMenuController.preferences.basic.menuWidth - view.frame.width
         }
         
-        // 背景色
+        // setup colors
         view.backgroundColor = themeColor
         tableView.backgroundColor = themeColor
         backTopView.backgroundColor = themeColor
         contentView.backgroundColor = themeColor
         
-        // 头像
+        // head
         let radius = headImageView.frame.height / 2
         headImageView.layer.cornerRadius = radius
         headImageView.layer.borderWidth = 0
         headImageView.layer.masksToBounds = false
-        // 阴影
+        // head shadow
         headImageView.layer.shadowColor = UIColor.gray.cgColor
-        headImageView.layer.shadowOpacity = 0.5 //不透明度
-        headImageView.layer.shadowRadius = 2.0 //设置阴影所照射的范围
-        headImageView.layer.shadowOffset = CGSize.init(width: 2, height: 2) // 设置阴影的偏移量
+        headImageView.layer.shadowOpacity = 0.5
+        headImageView.layer.shadowRadius = 2.0
+        headImageView.layer.shadowOffset = CGSize.init(width: 2, height: 2)
         
-        // 头像下的两行信息
+        // infos
         label1.text = NSLocalizedString("Menu_Title", comment: "")
         label1.font = UIFont(name: "PingFangSC-Regular", size: 13)
         label2.text = NSLocalizedString("Menu_SubTitle", comment: "")
         label2.font = UIFont(name: "PingFangSC-Regular", size: 11)
         
-        // 版本号
+        // version
         verLabel.text = Utils.getAppVersion()
         verLabel.font = UIFont(name: "PingFangSC-Regular", size: 13)
         
-        // 设置按钮
+        // settings button
         settingButton.backgroundColor = UIColor.clear
         let buttonHeight = settingButton.frame.height
-        //
+        // settings button image
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: buttonHeight, height: buttonHeight))
         imageView.image = UIImage(named: "menu_setting")
         settingButton.addSubview(imageView)
-        //
+        // settings button frame
         let labelX = imageView.frame.width + 20
         let labelWidth = settingButton.frame.width - labelX
         let label = UILabel(frame: CGRect(x: labelX, y: 0, width: labelWidth, height: buttonHeight))
@@ -151,36 +143,35 @@ extension MenuViewController {
         settingButton.addSubview(label)
     }
     
-    // 添加内部成分Views
+    // input content views
     func inputContentViews() {
-        // 侧边栏加入：喜欢
+        // the second view: My Favorite
         sideMenuController?.cache(viewControllerGenerator: {
             self.storyboard?.instantiateViewController(withIdentifier: "SecondViewController")
         }, with: "1")
         
-        // 侧边栏加入：设置
+        // the third view: Settings
         sideMenuController?.cache(viewControllerGenerator: {
             self.storyboard?.instantiateViewController(withIdentifier: "ThirdViewController")
         }, with: "2")
     }
     
     @IBAction func tapSettingButton(_ sender: UIButton) {
-        // 选中是设置相关的状态
+        // set sidemenu flag
         Utils().setMenuInt(int: SelectedSideMenu.setting)
-        // 还是不让setting按钮变色了，太别扭
         tableView.reloadData()
         
-        // 跳转到设置的界面
+        // push to settings view
         sideMenuController?.setContentViewController(with: "2", animated: Preferences.shared.enableTransitionAnimation)
         sideMenuController?.hideMenu()
-        //
+        // print info
         if let identifier = sideMenuController?.currentCacheIdentifier() {
             print("[Example] View Controller Cache Identifier: \(identifier)")
         }
     }
 }
 
-// MARK:- 实现SideMenuControllerDelegate方法
+// MARK:- SideMenuControllerDelegate
 extension MenuViewController: SideMenuControllerDelegate {
     
     func sideMenuController(
@@ -218,7 +209,7 @@ extension MenuViewController: SideMenuControllerDelegate {
     func sideMenuControllerWillRevealMenu(_ sideMenuController: SideMenuController) {
         print("[Example] Menu will reveal.")
         
-        // 发送隐藏键盘的通知
+        // send hide keyboard notification
         NotificationCenter.default.post(name: NSNotification.Name(NotificationName.hideKeyboard),
                                         object: nil,
                                         userInfo: nil)
@@ -233,12 +224,11 @@ extension MenuViewController: SideMenuControllerDelegate {
 extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // 菜单栏数量
         return 2
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // 设置一下cell
+        // setup cell
         let cell = tableView.dequeueReusableCell(
             withIdentifier: "MenuCell",
             for: indexPath) as! SelectionCell
@@ -246,7 +236,7 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
         let size: CGFloat = 16
         cell.titleLabel.font = UIFont(name: "PingFangSC-Regular", size: size)
         
-        // 设置颜色，但是无效
+        // setup colors
         if indexPath.row == Utils().getMenuInt() {
             cell.textLabel?.textColor = UIColor.colorWith(hexString: "#007AFF")
         }
@@ -254,7 +244,7 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
             cell.textLabel?.textColor = UIColor.black
         }
         
-        // 每行
+        // setup row
         let row = indexPath.row
         if row == 0 {
             cell.titleLabel?.text = NSLocalizedString("Menu_Search", comment: "")
@@ -265,36 +255,32 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
             cell.titleImage?.image = UIImage(named: "menu_liked")
         }
         
-        // 暗影模式
+        // if dark mode
         cell.titleLabel?.textColor = isDarkModeEnabled ? .white : .black
         
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // 得到行数
         let row = indexPath.row
         
-        // 设置从哪里跳转而来，必须和SelectedSideMenu顺序相同
+        // use sidemenu flag to know where to come
         Utils().setMenuInt(int: row)
         tableView.reloadData()
-        
-        // todo：取消选中状态
         tableView.deselectRow(at: indexPath, animated: true)
         
-        // 跳转到相应的界面
+        // push to view selected
         sideMenuController?.setContentViewController(
             with: "\(row)",
             animated: Preferences.shared.enableTransitionAnimation)
         sideMenuController?.hideMenu()
-        //
+        // print info
         if let identifier = sideMenuController?.currentCacheIdentifier() {
             print("[Example] View Controller Cache Identifier: \(identifier)")
         }
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        // 根据计算尺寸得到
         return cellHeight
     }
 }

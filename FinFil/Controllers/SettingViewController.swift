@@ -69,7 +69,7 @@ extension SettingViewController {
     
     func refreshViews() {
         // refresh switch1 status
-        if DefaultBase().getAppType() == DefaultBase.listeningNetwork {
+        if UserDefaultBase().getAppType() == UserDefaultBase.listeningNetwork {
             switch1.isOn = true
         }
         else {
@@ -77,7 +77,7 @@ extension SettingViewController {
         }
         
         // refresh switch2 status
-        if DefaultBase().getSoundType() == DefaultBase.soundOn {
+        if UserDefaultBase().getSoundType() == UserDefaultBase.soundOn {
             switch2.isOn = true
         }
         else {
@@ -85,27 +85,25 @@ extension SettingViewController {
         }
     }
     
-    // Menu按键
     @IBAction func tapSideMenuButton(_ sender: UIBarButtonItem) {
-        // 调用侧边栏
         sideMenuController?.revealMenu()
     }
     
     @objc func switchOneDidChange(_ sender: UISwitch){
         if sender.isOn {
-            DefaultBase().setAppType(string: DefaultBase.listeningNetwork)
+            UserDefaultBase().setAppType(string: UserDefaultBase.listeningNetwork)
         }
         else {
-            DefaultBase().setAppType(string: DefaultBase.unLiseningNetwork)
+            UserDefaultBase().setAppType(string: UserDefaultBase.unLiseningNetwork)
         }
     }
     
     @objc func switchTwoDidChange(_ sender: UISwitch){
         if sender.isOn {
-            DefaultBase().setSoundType(string: DefaultBase.soundOn)
+            UserDefaultBase().setSoundType(string: UserDefaultBase.soundOn)
         }
         else {
-            DefaultBase().setSoundType(string: DefaultBase.soundOff)
+            UserDefaultBase().setSoundType(string: UserDefaultBase.soundOff)
         }
     }
 }

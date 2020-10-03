@@ -99,7 +99,6 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
         let row = indexPath.row
         let movieID = moviesInfo[row].movieID
 
-        // 取消选中状态
         tableView.deselectRow(at: indexPath, animated: true)
         
         Network().get_details_request(

@@ -10,10 +10,10 @@ import Foundation
 import UIKit
 
 
-// MARK:- 扩展UIColor，用字符串生成颜色
+// MARK:- UIcolor
 extension UIColor {
     
-    // 定义颜色
+    // color define
     struct RGBA32: Equatable {
         private var color: UInt32
         
@@ -58,34 +58,33 @@ extension UIColor {
         }
     }
     
-    // 根据rgb来定义颜色
+    // set color by RGB
     class func colorWithRGBA(r:CGFloat,g:CGFloat,b:CGFloat,a:CGFloat) -> UIColor {
         return UIColor(red: r/255, green: g/255, blue: b/255, alpha: a)
     }
     
-    /// 传入一个16进制的字符串，返回该16进制代表的颜色（默认alpha位1）
+    /// use 16 bit string to setup color（defult alpha is 1.0）
     ///
-    /// - Parameter hexString: 代表颜色的16进制字符串
-    /// - Returns: 该16进制表示的颜色
+    /// - Parameter hexString: 16 bite color
+    /// - Returns: color
     static func colorWith(hexString: String) -> UIColor {
         return UIColor.colorWith(hexString: hexString, alpha: 1.0)
     }
     
-    /// 传入一个16进制的字符串，返回该16进制代表的颜色
+    /// use 16 bit string to setup color（defult alpha is 1.0）
     ///
-    /// - Parameter hexString: 代表颜色的16进制字符串,支持@“#123456”、 @“0X123456”、 @“123456”三种格式
-    ///   - alpha: 颜色的透明度
-    /// - Returns: 该16进制表示的颜色
+    /// - Parameter hexString: example @“#123456”、 @“0X123456”、 @“123456”
+    /// - alpha: alpha
+    /// - Returns: color
     static func colorWith(hexString: String, alpha: CGFloat) -> UIColor {
-        //删除字符串中的空格
+        // delete space
         var cString = hexString.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).uppercased()
         
         // strip 0X if it appears
-        //如果是0x开头的，那么截取字符串，字符串从索引为2的位置开始，一直到末尾
         if cString.hasPrefix("0X") {
             cString = ((cString as NSString).substring(from: 2) as NSString) as String
         }
-        //如果是#开头的，那么截取字符串，字符串从索引为1的位置开始，一直到末尾
+        // start with #
         if cString.hasPrefix("#") {
             cString = ((cString as NSString).substring(from: 1) as NSString) as String
         }
@@ -110,14 +109,9 @@ extension UIColor {
 }
 
 
-// MARK:- 扩展UIView，生成部分圆角
+// MARK:- UIview
 extension UIView {
-    
-    /// 部分圆角
-    ///
-    /// - Parameters:
-    ///   - corners: 需要实现为圆角的角，可传入多个
-    ///   - radii: 圆角半径
+    // make corner radio of view
     func corner(byRoundingCorners corners: UIRectCorner, radii: CGFloat) {
         let maskPath = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radii, height: radii))
         let maskLayer = CAShapeLayer()
@@ -128,14 +122,13 @@ extension UIView {
 }
 
 
-// MARK:-  修改默认返回按钮动作
+// MARK:-  navigation bar
 protocol NavigationBarShouldPopProtocol {
     func shouldPopWhenClickBackButton() -> Bool
 }
 
-// 点击 navigationBar 的 backButton 是否 pop，默认为 true
+// tip navigationBar's backButton for pop or not，defult is true
 extension UIViewController: NavigationBarShouldPopProtocol {
-    
     @objc func shouldPopWhenClickBackButton() -> Bool {
         return true
     }
@@ -156,7 +149,7 @@ extension UINavigationController: UINavigationBarDelegate {
         
         var shouldPop = true
         if let controller = topViewController, controller.responds(to: #selector(UIViewController.shouldPopWhenClickBackButton)) {
-            // 询问是否可以 pop
+            // if pop
             shouldPop = controller.shouldPopWhenClickBackButton()
         }
         
@@ -178,10 +171,10 @@ extension UINavigationController: UINavigationBarDelegate {
 }
 
 
-// MARK: - 设备的型号
+// MARK: - UIDeviece
 extension UIDevice {
     
-    /// 具体的设备的型号
+    // device type
     public class var deviceType: String {
         
         var systemInfo = utsname()

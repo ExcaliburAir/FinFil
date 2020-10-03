@@ -64,7 +64,7 @@ extension SearchViewController {
     func setupViews() {
         textField.delegate = self
         
-        // 背景渐变色
+        // back ground color set
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = self.view.bounds
         self.view.layer.addSublayer(gradientLayer)
@@ -87,60 +87,49 @@ extension SearchViewController {
         textField.resignFirstResponder()
     }
     
-    // Menu按键
     @IBAction func tapSideMenuButton(_ sender: UIBarButtonItem) {
-        // 调用侧边栏
+        // show sidemenu
         sideMenuController?.revealMenu()
     }
     
-    // 添加点击事件
+    // add tap gesure
     func addTapGesture() {
-        // 设置添加手势识别器
+        // create gusture
         let gesture = UITapGestureRecognizer(target: self, action: #selector(tapGestureAction(sender:)))
         gesture.numberOfTapsRequired = 1
         gesture.numberOfTouchesRequired = 1
-        
-        // 附加识别器到视图
         self.view.addGestureRecognizer(gesture)
     }
     
-    // 相应点击事件
     @objc func tapGestureAction(sender: UITapGestureRecognizer) {
-        // 取消textfield的焦点
         textField.resignFirstResponder()
     }
 }
 
+// MARK:- UITextFieldDelegate
 extension SearchViewController: UITextFieldDelegate {
-    // 输入框询问是否可以编辑 true 可以编辑  false 不能编辑
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         return true
     }
     
-    // 该方法代表输入框已经可以开始编辑,进入编辑状态
     func textFieldDidBeginEditing(_ textField: UITextField) {}
     
-    // 输入框将要将要结束编辑
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         return true
     }
     
-    // 输入框结束编辑状态
     func textFieldDidEndEditing(_ textField: UITextField) {
-        // 取消textfield的焦点
         textField.resignFirstResponder()
     }
     
-    // 文本框是否可以清除内容
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
         return true
     }
     
-    // 输入框按下键盘 return 收回键盘
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        // 取消textfield的焦点
         textField.resignFirstResponder()
         
+        // use search request
         Network().get_search_request(
             controller: self,
             queryString: textField.text!,
@@ -160,7 +149,6 @@ extension SearchViewController: UITextFieldDelegate {
         return true
     }
     
-    // 该方法当文本框内容出现变化时 及时获取文本最新内容
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         return true
     }
