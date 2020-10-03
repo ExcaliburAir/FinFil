@@ -19,16 +19,24 @@ class MovieInfo: NSObject {
         super.init()
         
         if let value = dic["id"] {
-            movieID = String(value as! Int)
+            if let id = value as? Int {
+                movieID = String(id)
+            }
         }
         if let value = dic["original_title"] {
-            originalTitle = value as! String
+            if let title = value as? String {
+                originalTitle = title
+            }
         }
         if let value = dic["overview"] {
-            overview = value as! String
+            if let overviewStr = value as? String {
+                overview = overviewStr
+            }
         }
         if let value = dic["release_date"] {
-            releaseDate = value as! String
+            if let date = value as? String {
+                releaseDate = date
+            }
         }
     }
 }
@@ -48,31 +56,49 @@ class MovieDetail: NSObject {
         super.init()
         
         if let value = dic["id"] {
-            movieID = String(value as! Int)
+            if let id = value as? Int {
+                movieID = String(id)
+            }
         }
         if let value = dic["original_title"] {
-            originalTitle = value as! String
+            if let title = value as? String {
+                originalTitle = title
+            }
         }
         if let value = dic["overview"] {
-            overview = value as! String
+            if let overviewStr = value as? String {
+                overview = overviewStr
+            }
         }
         if let value = dic["release_date"] {
-            releaseDate = value as! String
+            if let date = value as? String {
+                releaseDate = date
+            }
         }
         if let value = dic["original_language"] {
-            originalLanguage = value as! String
+            if let language = value as? String {
+                originalLanguage = language
+            }
         }
         if let value = dic["runtime"] {
-            runtime = String(value as! Int)
+            if let timeInt = value as? Int {
+                runtime = String(timeInt)
+            }
         }
         if let value = dic["vote_average"] {
-            voteAverage = String(value as! Double)
+            if let average = value as? Double {
+                voteAverage = String(average)
+            }
         }
         if let value = dic["vote_count"] {
-            voteCount = String(value as! Int)
+            if let count = value as? Int {
+                voteCount = String(count)
+            }
         }
-        if let value = dic["poster_path"] { //todo:
-            posterPath = Network.imageBaseUrl + (value as! String)
+        if let value = dic["poster_path"] {
+            if let path = value as? String {
+                posterPath = Network.imageBaseUrl + path
+            }
         }
     }
 }
