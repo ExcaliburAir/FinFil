@@ -70,7 +70,7 @@ extension SearchViewController {
         searchButton.layer.borderWidth = 1
         searchButton.layer.masksToBounds = true
         searchButton.titleLabel?.textAlignment = NSTextAlignment.center
-        searchButton.layer.cornerRadius = 5
+        searchButton.layer.cornerRadius = searchButton.frame.height / 2
         searchButton.backgroundColor = .clear
         searchButton.setTitle(NSLocalizedString("Search", comment: ""), for: .normal)
         searchButton.setTitleColor(.white, for: .normal)

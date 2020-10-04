@@ -40,20 +40,22 @@
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="BRo-yL-B04"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rPx-p7-Il6">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Input Movie Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rPx-p7-Il6">
                                 <rect key="frame" x="60" y="209" width="255" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="qVm-4m-y1d"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="alphabet" returnKeyType="search" enablesReturnKeyAutomatically="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dA1-b7-0o2">
-                                <rect key="frame" x="137.5" y="254" width="100" height="30"/>
+                                <rect key="frame" x="60" y="254" width="255" height="30"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="Qck-Wf-UzZ"/>
-                                    <constraint firstAttribute="height" constant="30" id="vmW-6N-cvJ"/>
+                                    <constraint firstAttribute="height" constant="30" id="Xqm-R7-tJ0"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="serch"/>
@@ -66,10 +68,11 @@
                         <constraints>
                             <constraint firstItem="dA1-b7-0o2" firstAttribute="centerX" secondItem="rPx-p7-Il6" secondAttribute="centerX" id="22N-w6-uJT"/>
                             <constraint firstItem="dA1-b7-0o2" firstAttribute="top" secondItem="rPx-p7-Il6" secondAttribute="bottom" constant="15" id="7ce-QO-l6e"/>
+                            <constraint firstItem="dA1-b7-0o2" firstAttribute="leading" secondItem="rPx-p7-Il6" secondAttribute="leading" id="7fi-7z-ivT"/>
                             <constraint firstItem="rPx-p7-Il6" firstAttribute="top" secondItem="cSI-kN-9t7" secondAttribute="bottom" constant="15" id="BAl-We-Ugp"/>
-                            <constraint firstItem="rPx-p7-Il6" firstAttribute="height" secondItem="cSI-kN-9t7" secondAttribute="height" id="Haj-2y-YUM"/>
                             <constraint firstItem="cSI-kN-9t7" firstAttribute="leading" secondItem="61h-9M-Rwq" secondAttribute="leading" constant="60" id="JgO-9q-5p3"/>
                             <constraint firstItem="rPx-p7-Il6" firstAttribute="trailing" secondItem="cSI-kN-9t7" secondAttribute="trailing" id="SdY-rw-rje"/>
+                            <constraint firstItem="dA1-b7-0o2" firstAttribute="trailing" secondItem="rPx-p7-Il6" secondAttribute="trailing" id="Wte-BF-9FP"/>
                             <constraint firstItem="rPx-p7-Il6" firstAttribute="width" secondItem="cSI-kN-9t7" secondAttribute="width" id="csh-0d-vMD"/>
                             <constraint firstItem="rPx-p7-Il6" firstAttribute="leading" secondItem="cSI-kN-9t7" secondAttribute="leading" id="nbb-Xm-QQv"/>
                             <constraint firstItem="cSI-kN-9t7" firstAttribute="top" secondItem="61h-9M-Rwq" secondAttribute="top" constant="100" id="vNP-K2-qI7"/>

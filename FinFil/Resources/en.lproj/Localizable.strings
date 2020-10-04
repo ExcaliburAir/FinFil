@@ -29,7 +29,7 @@ Menu_Search = "Search Movies";
 Menu_Liked = "My Favorite";
 
 // Views
-Search_Movies = "Search movies, then click \"Search\" in the keyboard";
+Search_Movies = "Search movies, then click \"Search\" button below or in keyboard";
 Try_Again = "please try again.";
 Favorated = "You Had Favorated It!";
 Review_inLiked = "You can review it in \"My Favorite\"";
