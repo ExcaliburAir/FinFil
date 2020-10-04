@@ -24,3 +24,9 @@
 	- Network status listening  
 	- AVaudio  
 	- Sidemenu  
+
+![image](https://github.com/ExcaliburAir/FinFil/tree/main/image/FinFil1.png)  
+![image](https://github.com/ExcaliburAir/FinFil/tree/main/image/FinFil2.png)  
+![image](https://github.com/ExcaliburAir/FinFil/tree/main/image/FinFil3.png)  
+![image](https://github.com/ExcaliburAir/FinFil/tree/main/image/FinFil4.png)  
+![image](https://github.com/ExcaliburAir/FinFil/tree/main/image/FinFil5.png)  
